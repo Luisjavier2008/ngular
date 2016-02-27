@@ -12,10 +12,19 @@ var MenuController = function ($scope, $http){
 		$scope.error = "there nothig todo error we cant get any data"
 	};
 
-	$http.get("http://api.github.com/users/robconery").then(function(response){
-		$scope.github = response.data;
-	}, whenError);
+	var onRepos = function(response){
+		$scope.repos = response.data
+	}
 
+
+	$scope.search = function(){
+		$http.get("http://api.github.com/users/"+$scope.yourname.name).then(function(response){
+			$scope.github = response.data;
+			$http.get($scope.github.repos_url).then(onRepos, whenError)
+		}, whenError);
+	}
+
+	$scope.sortedd = '-stargazers_count'
 	// var promise = $http.get("http://google.com")
 	// promise.then(function(response){
 	// 	$scope.user = response.data;

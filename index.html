@@ -9,10 +9,31 @@
     <div ng-controller="MenuController">
       <label>Name:</label>
       <input type="text" ng-model="yourname.name" placeholder="Enter a name here">
-      <img ng-src="{{github.avatar_url}}" width="15px">
+      <button ng-click="search()">search</button>
+
+      <img ng-src="{{github.avatar_url}}" width="100px">
       {{error}}
       <hr>
       <h1>Hello {{yourname.name}}!{{message}}</h1>
+      <select ng-model="sortedd">
+        <option value="+name">Name</option>
+        <option value="-stargazers_count">Starts</option>
+        <option value="+Language">Language</option>
+      </select>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Stars</th>
+          <th>Language</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="repo in repos | orderBy:sortedd">
+            <td>{{repo.name}}</td>
+            <td>{{repo.stargazers_count | number}}</td>
+            <td>{{repo.language}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
