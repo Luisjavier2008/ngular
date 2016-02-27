@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="githubView">
   <head>
     <title>Ordenes de comida</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
@@ -8,9 +8,11 @@
   <body>
     <div ng-controller="MenuController">
       <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <input type="text" ng-model="yourname.name" placeholder="Enter a name here">
+      <img ng-src="{{github.avatar_url}}" width="15px">
+      {{error}}
       <hr>
-      <h1>Hello {{yourName}}!{{message}}</h1>
+      <h1>Hello {{yourname.name}}!{{message}}</h1>
     </div>
   </body>
 </html>
